@@ -9,12 +9,29 @@ namespace DevTeamsProject
     public class DeveloperRepo
     {
         private readonly List<DeveloperInfo> _developerDirectory = new List<DeveloperInfo>();
-
-        //Developer Create
-
-        public void AddDeveloperToTeam(DeveloperInfo listofdevelopers)
+        private readonly List<DevTeam> dev = new List<DevTeam>();
+        public DevTeamRepo _Team = new DevTeamRepo();
+        public void AddContentToList(DeveloperInfo content)
         {
-            _developerDirectory.Add(listofdevelopers);
+            _developerDirectory.Add(content);
+        }
+        //Developer Create
+        
+        public void AddDevelopersToTeams(DevTeam team,DeveloperInfo developer )
+
+        {
+            // Find the developer
+            Console.WriteLine("enter the ID of the developer that you want to add");
+            string input = Console.ReadLine();
+           
+
+
+             
+
+
+
+
+
         }
         //Developer Read
 
@@ -24,12 +41,12 @@ namespace DevTeamsProject
         }
         //Developer Update
 
-        public bool UpdateDeveloperList( string originalName,DeveloperInfo newList)
+        public bool UpdateDeveloperList( int id,DeveloperInfo newList)
 
 
         {    //Find the list
 
-            DeveloperInfo oldList = GetDeveloperById(originalName);
+            DeveloperInfo oldList = GetDeveloperById(id);
             
             //Update the list
             if( oldList != null)
@@ -37,7 +54,7 @@ namespace DevTeamsProject
                 oldList.Name = newList.Name;
                 oldList.Id = newList.Id;
                 oldList.PluralSight = newList.PluralSight;
-                oldList.GenreOfMonth = newList.GenreOfMonth;
+                
                 return true;
             }
             else
@@ -51,10 +68,10 @@ namespace DevTeamsProject
 
         //Developer Delete
 
-        public bool RemoveDevloperFromList(string name)
+        public bool RemoveDevloperFromList(int id)
         {
             //Find the list
-            DeveloperInfo list = GetDeveloperById(name);
+            DeveloperInfo list = GetDeveloperById(id);
             if (list == null)
             {
                 return false;
@@ -80,11 +97,11 @@ namespace DevTeamsProject
 
         //Developer Helper (Get Developer by ID)
 
-        public DeveloperInfo GetDeveloperById(string name)
+        public DeveloperInfo GetDeveloperById(int id)
         {
             foreach(DeveloperInfo list in _developerDirectory)
             {
-                if (list.Name== name)
+                if (list.Id == id)
                 {
                     return list;
                 }

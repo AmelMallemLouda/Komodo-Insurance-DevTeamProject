@@ -9,7 +9,8 @@ namespace DevTeamsProject
     public class DevTeamRepo
     {
 
-        private readonly List<DevTeam> _devTeams = new List<DevTeam>();
+        public  List<DevTeam> _devTeams = new List<DevTeam>();
+        public DevTeam devTeam = new DevTeam();
 
         //DevTeam Create
         public void AddTeamToList(DevTeam listofteams)
@@ -17,6 +18,28 @@ namespace DevTeamsProject
             _devTeams.Add(listofteams);
         }
 
+
+
+        public void AddDevelopersToTeams(DeveloperInfo developer)
+
+        {
+            List<DeveloperInfo> newList = new List<DeveloperInfo>();
+            // Find the developer
+            Console.WriteLine("Enter the ID of the developer that you want to add");
+            int intAsstring = int.Parse(Console.ReadLine());
+            developer.Id = intAsstring;
+
+            Console.WriteLine("Enter the Name of the developer that you want to add");
+            string name = Console.ReadLine();
+            developer.Name = name;
+            Console.Clear();
+            newList.Add(developer);
+
+            devTeam.Developer = newList;
+
+
+
+        }
 
         //DevTeam Read
 
@@ -38,7 +61,7 @@ namespace DevTeamsProject
             if (oldList != null)
             {
                 oldList.TeamId = newlist.TeamId;
-                oldList.DevelopersOfTeam = newlist.DevelopersOfTeam;
+               
                 return true;
             }
             else

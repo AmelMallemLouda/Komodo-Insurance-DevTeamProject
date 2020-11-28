@@ -11,18 +11,23 @@ namespace DevTeamsProject
     public class DevTeam
 
     {
+        
         public string Name { get; set; }
         public int TeamId { get; set; }
-        public string DevelopersOfTeam { get; set; }
+
+        public List<DeveloperInfo> Developer { get; set; }
 
 
 
         public DevTeam() { }
-        public DevTeam(string name,int teamnumber,  string developersofteam)
+        public DevTeam(string name,int teamnumber, List<DeveloperInfo> developer)
         {
             TeamId = teamnumber;
-            DevelopersOfTeam = developersofteam;
+           
             Name = name;
+
+            Developer = developer;
+            
 
         }
     }
