@@ -27,6 +27,11 @@ namespace DevTeamsProject
             }
         }
 
+        public void AddMultipledevelopersAtOnce()
+        {
+
+        }
+
        
         //Developer Read
 
@@ -104,9 +109,8 @@ namespace DevTeamsProject
             return null;
 
         }
+       
 
 
-
-        
     }
 }

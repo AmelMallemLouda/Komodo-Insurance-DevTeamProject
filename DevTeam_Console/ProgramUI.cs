@@ -88,12 +88,10 @@ namespace DevTeam_Console
                         AddMultipleDevelopersToTeam();
                         break;
                     case "7":
-                        break;
-                    case "8":
                         Console.WriteLine("GoodBye");
-                        break;
                         keepRunning = false;
-
+                        break;
+                   
                     default:
                         Console.WriteLine("please enter a correct number");
                         break;
@@ -295,9 +293,10 @@ namespace DevTeam_Console
 
         public void AddMultipleDevelopersToTeam()
         {
-            List<DeveloperInfo> _developers = new List<DeveloperInfo>();
+            DeveloperInfo developer = new DeveloperInfo();
+
             // Find Team
-            Console.WriteLine("Enter the ID of the Team to add the developers");
+            Console.WriteLine("Enter the ID of the Team to add the developer");
             int intAsstring = int.Parse(Console.ReadLine());
             DevTeam content = _Team.GetTeamById(intAsstring);
 
@@ -311,12 +310,42 @@ namespace DevTeam_Console
                 Console.WriteLine("No content by that ID");
             }
             Console.ReadKey();
-
             // Find the developer
-            Console.WriteLine("Enter the IDs of the developers that you want to add to that team");
-            int intAsstring1 = int.Parse(Console.ReadLine());
-          // List<DeveloperInfo> dev = _DevList.GetDeveloperById(intAsstring1);
-           // _developers. = intAsstring1;
+            Console.WriteLine("Enter the ID of developer that you want to add to that team");
+            int[] answer = new int[5];
+            
+            for (int i =1; i < answer.Length; i++)
+            {
+                answer[i] = int.Parse(Console.ReadLine());
+            }
+            DeveloperInfo dev = _DevList.GetDeveloperById(answer[1]);
+            DeveloperInfo dev1 = _DevList.GetDeveloperById(answer[2]);
+            DeveloperInfo dev2 = _DevList.GetDeveloperById(answer[3]);
+            DeveloperInfo dev3 = _DevList.GetDeveloperById(answer[4]);
+
+
+            //developer.Id = answer[1];
+            if (dev.Id == answer[1] && dev1.Id == answer[2] && dev2.Id == answer[3] && dev3.Id == answer[4])
+            {
+                Console.WriteLine($"Name:{dev.Name}\n" +
+                    $"Id:{dev.Id}"); 
+                Console.WriteLine($"Name:{dev1.Name}\n" +
+                    $"Id:{dev1.Id}");
+                Console.WriteLine($"Name:{dev2.Name}\n" +
+                   $"Id:{dev2.Id}");
+                Console.WriteLine($"Name:{dev3.Name}\n" +
+                   $"Id:{dev3.Id}");
+            }
+            else
+            {
+                Console.WriteLine("No content by that ID");
+            }
+            // Add developer to Team
+            content.Developer.Add(dev);
+            content.Developer.Add(dev1);
+            content.Developer.Add(dev2);
+            content.Developer.Add(dev3);
+
         }
 
 
