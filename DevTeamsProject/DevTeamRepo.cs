@@ -20,25 +20,9 @@ namespace DevTeamsProject
 
 
 
-        public void AddDevelopersToTeams(DeveloperInfo developer)
-
+        public void AddContentToList(DevTeam Developer)
         {
-            List<DeveloperInfo> newList = new List<DeveloperInfo>();
-            // Find the developer
-            Console.WriteLine("Enter the ID of the developer that you want to add");
-            int intAsstring = int.Parse(Console.ReadLine());
-            developer.Id = intAsstring;
-
-            Console.WriteLine("Enter the Name of the developer that you want to add");
-            string name = Console.ReadLine();
-            developer.Name = name;
-            Console.Clear();
-            newList.Add(developer);
-
-            devTeam.Developer = newList;
-
-
-
+            _devTeams.Add(Developer);
         }
 
         //DevTeam Read

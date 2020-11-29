@@ -11,28 +11,23 @@ namespace DevTeamsProject
         private readonly List<DeveloperInfo> _developerDirectory = new List<DeveloperInfo>();
         private readonly List<DevTeam> dev = new List<DevTeam>();
         public DevTeamRepo _Team = new DevTeamRepo();
+        public DevTeam devTeam = new DevTeam();
+
+        //Developer Create
         public void AddContentToList(DeveloperInfo content)
         {
             _developerDirectory.Add(content);
         }
-        //Developer Create
-        
-        public void AddDevelopersToTeams(DevTeam team,DeveloperInfo developer )
-
+        //Devloperlist
+        public void GetDeveloperList()
         {
-            // Find the developer
-            Console.WriteLine("enter the ID of the developer that you want to add");
-            string input = Console.ReadLine();
-           
-
-
-             
-
-
-
-
-
+            foreach(DeveloperInfo dev in _developerDirectory)
+            {
+                Console.WriteLine(dev.Id);
+            }
         }
+
+       
         //Developer Read
 
         public List<DeveloperInfo> GetListOfDeveloper()

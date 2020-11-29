@@ -12,8 +12,9 @@ namespace DevTeam_Console
         public DeveloperRepo _DevList = new DeveloperRepo();
         public DevTeamRepo _Team = new DevTeamRepo();
         public DevTeam devTeam = new DevTeam();
+        public List<DevTeam> teamList = new List<DevTeam>();
         
-        public DeveloperInfo developer = new DeveloperInfo();
+        public List<DeveloperInfo> developer = new List<DeveloperInfo>();
         public void Run()
         {
             SeedDeveloperList();
@@ -69,12 +70,13 @@ namespace DevTeam_Console
                         DisplayListOfTeams();
                         break;
                     case "3":
-                        AddDevelopers(developer);
+
+                        AddDevelopersToTeams();
+
 
 
                         break;
                     case "4":
-                        AddDevelopersToTeams(developer);
                         break;
                     case "5":
                         break;
@@ -115,70 +117,58 @@ namespace DevTeam_Console
 
         }
 
-        //Add developpers individually from the developer directory to that team
-        public void AddDevelopersToTeams(DeveloperInfo developer)
+
+        public void AddDevelopersToTeams()
 
         {
+            DeveloperInfo developer = new DeveloperInfo();
             List<DeveloperInfo> newList = new List<DeveloperInfo>();
-            // Find the developer
-            Console.WriteLine("Enter the ID of the developer that you want to add");
+            // Find Team
+            Console.WriteLine("Enter the ID of the Team to add the developer");
             int intAsstring = int.Parse(Console.ReadLine());
-            developer.Id = intAsstring;
-
-            Console.WriteLine("Enter the Name of the developer that you want to add");
-            string name = Console.ReadLine();
-            developer.Name = name;
-            Console.Clear();
-            newList.Add(developer);
-
-            devTeam.Developer = newList;
-
-
-
-        }
-        // Find the  the New Team
-
-        public void AddDevelopers(DeveloperInfo developer)
-
-        {
-            // Find the developer
-            Console.WriteLine("Enter the ID of the developer that you want to add");
-             string input = Console.ReadLine();
-            Console.Clear();
-           
-
-            _Team.AddDevelopersToTeams(developer);
-
-            Console.WriteLine("Enter the ID of the team to add the developer to it");
-            string input1 = Console.ReadLine();
+            DevTeam content = _Team.GetTeamById(intAsstring);
             
-            switch (input1)
+            if (content.TeamId == intAsstring)
             {
-                case "1":
-                    Console.WriteLine("Add the developer to team 1" );
-                   
-
-
-                    break;
-                case "2":
-                    Console.WriteLine("Add the developer to team 2");
-                    break;
+                Console.WriteLine($"Name:{content.Name}\n"+
+                    $"Id:{content.TeamId}");
             }
+            else
+            {
+                Console.WriteLine("No content by that ID");
+            }
+            Console.ReadKey();
+            // Find the developer
+            Console.WriteLine("Enter the developer that you want to add to the team");
+            int intAsstring1 = int.Parse(Console.ReadLine());
+            DeveloperInfo dev = _DevList.GetDeveloperById(intAsstring1);
+            developer.Id = intAsstring1;
+            if (dev.Id== intAsstring1)
+            {
+                Console.WriteLine($"Name:{dev.Name}\n"+
+                    $"Id:{dev.Id}");
+            }
+            else
+            {
+                Console.WriteLine("No content by that ID");
+            }
+            // Add developer to Team
+            content.Developer.Add(dev);
+           // DeveloperInfo helo = new DeveloperInfo(dev.Name, dev.Id,dev.PluralSight);
+            
+           // DevTeam Team = new DevTeam(content.Name, content.TeamId, new List<DeveloperInfo> { helo });
 
-
-
-
+            
 
         }
-
             // See a list of existing developers
 
-            private void DisplayListOfDevelopers()
+           private void DisplayListOfDevelopers()
         {
             // Prompt the user to give me the ID of the Team
 
             Console.Clear();
-            Console.WriteLine("List of developer\n");
+            Console.WriteLine("List of Developers:\n");
 
             List<DeveloperInfo> listOfContent = _DevList.GetListOfDeveloper();
             foreach (DeveloperInfo content in listOfContent)
@@ -188,27 +178,38 @@ namespace DevTeam_Console
             }
         }
         private void DisplayListOfTeams()
+
         {
-            // Prompt the user to give me the ID of the Team
-            Console.WriteLine("List of teams\n");
+
+          
+            Console.WriteLine("List Of Teams:\n");
 
 
             List<DevTeam> listOfContent = _Team.GetTeamlist();
             foreach (DevTeam content in listOfContent)
             {
                 Console.WriteLine($"Name:{content.Name}\n" +
-                    $"Id:{content.TeamId}\n" +
-                    $"developer:{content.Developer}");
+                    $"Id:{content.TeamId}\n"
+                   );
+               
+                
+                    foreach (DeveloperInfo dev in content.Developer)
+                    {
+                        Console.WriteLine($"Name:{dev.Name}\n");
+                    }
+                
             }
+           
         }
 
 
         //See method
 
-        private void SeedTeamList()
+        public void SeedTeamList()
         {
+
             DeveloperInfo MichaelPabody = new DeveloperInfo("Michael Pabody",1, "adasd");
-            DeveloperInfo CaseyWilson = new DeveloperInfo("Casey Wilson", 1, "asdsd");
+            DeveloperInfo CaseyWilson = new DeveloperInfo("Casey Wilson", 2, "asdsd");
             DeveloperInfo MitchellReed = new DeveloperInfo("Mitchell Reed", 3, "sdasd");
             DeveloperInfo DrewGraber = new DeveloperInfo("Drew Graber", 4, "assd");
             List<DeveloperInfo> newList = new List<DeveloperInfo>();
@@ -222,12 +223,13 @@ namespace DevTeam_Console
             _Team.AddTeamToList(Team2);
             _Team.AddTeamToList(Team3);
             _Team.AddTeamToList(Team4);
+          
 
         }
 
         //See method
 
-        private void SeedDeveloperList()
+        public void SeedDeveloperList()
         {
             DeveloperInfo MichaelPabody = new DeveloperInfo("Michael Pabody", 1, "adasd");
             DeveloperInfo CaseyWilson = new DeveloperInfo("Casey Wilson", 2, "asdsd");
