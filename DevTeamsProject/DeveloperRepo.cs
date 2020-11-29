@@ -48,7 +48,7 @@ namespace DevTeamsProject
             {
                 oldList.Name = newList.Name;
                 oldList.Id = newList.Id;
-                oldList.PluralSight = newList.PluralSight;
+                oldList.PluralSightAccess = newList.PluralSightAccess;
                 
                 return true;
             }
@@ -57,13 +57,12 @@ namespace DevTeamsProject
                 return false;
             }
 
-        } 
+        }
+        //Pluralsight access
+       
+            //Developer Delete
 
-
-
-        //Developer Delete
-
-        public bool RemoveDevloperFromList(int id)
+            public bool RemoveDevloperFromList(int id)
         {
             //Find the list
             DeveloperInfo list = GetDeveloperById(id);
@@ -105,5 +104,9 @@ namespace DevTeamsProject
             return null;
 
         }
+
+
+
+        
     }
 }

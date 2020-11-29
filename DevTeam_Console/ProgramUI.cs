@@ -39,7 +39,7 @@ namespace DevTeam_Console
                     "2.See a list of existing teams and existing developers.\n" +
                     "3.Add members to a team by their unique identifier.\n" +
                     "4.Remove members from a team by their unique identifier.\n" +
-                    "5.Get a list of all the Developers that need a Pluralsight license monthly.\n" +
+                    "5.See whether or not the developers have access to the online learning tool: Pluralsight.\n" +
                     "6.Add multiple Developers to a team at once.\n" +
                     "7.Exist.\n");
 
@@ -82,8 +82,10 @@ namespace DevTeam_Console
                     
                         break;
                     case "5":
+                        HasAccessToPluralSight();
                         break;
                     case "6":
+                        AddMultipleDevelopersToTeam();
                         break;
                     case "7":
                         break;
@@ -142,7 +144,7 @@ namespace DevTeam_Console
             }
             Console.ReadKey();
             // Find the developer
-            Console.WriteLine("Enter the developer that you want to add to the team");
+            Console.WriteLine("Enter the ID of developer that you want to add to that team");
             int intAsstring1 = int.Parse(Console.ReadLine());
             DeveloperInfo dev = _DevList.GetDeveloperById(intAsstring1);
             developer.Id = intAsstring1;
@@ -249,6 +251,74 @@ namespace DevTeam_Console
 
         }
 
+        // See whether or not the developers have access to the online learning tool: Pluralsight.
+
+        public void HasAccessToPluralSight()
+        {
+            DeveloperInfo developer = new DeveloperInfo();
+            Console.WriteLine("Enter the  ID of developer to see whether he/she has access to PluralSight.");
+            int intAsstring1 = int.Parse(Console.ReadLine());
+            DeveloperInfo dev = _DevList.GetDeveloperById(intAsstring1);
+            developer.Id = intAsstring1;
+            if (dev.Id == intAsstring1)
+            {
+                Console.WriteLine($"Name:{dev.Name}\n" +
+                    $"Id:{dev.Id}\n" +
+                    $"Plural sight Access {dev.PluralSightAccess}");
+                if (dev.PluralSightAccess == true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{dev.Name} Has PluralSight Access");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"{dev.Name} Has Not PluralSight Access");
+                    Console.ResetColor();
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("No Content by This ID,Please Enter a Valid ID");
+            }
+
+           
+           
+         
+
+
+
+        }
+        //Add multiple Developers to a team at once.
+
+        public void AddMultipleDevelopersToTeam()
+        {
+            List<DeveloperInfo> _developers = new List<DeveloperInfo>();
+            // Find Team
+            Console.WriteLine("Enter the ID of the Team to add the developers");
+            int intAsstring = int.Parse(Console.ReadLine());
+            DevTeam content = _Team.GetTeamById(intAsstring);
+
+            if (content.TeamId == intAsstring)
+            {
+                Console.WriteLine($"Name:{content.Name}\n" +
+                    $"Id:{content.TeamId}");
+            }
+            else
+            {
+                Console.WriteLine("No content by that ID");
+            }
+            Console.ReadKey();
+
+            // Find the developer
+            Console.WriteLine("Enter the IDs of the developers that you want to add to that team");
+            int intAsstring1 = int.Parse(Console.ReadLine());
+          // List<DeveloperInfo> dev = _DevList.GetDeveloperById(intAsstring1);
+           // _developers. = intAsstring1;
+        }
+
 
 
 
@@ -257,16 +327,16 @@ namespace DevTeam_Console
         public void SeedTeamList()
         {
 
-            DeveloperInfo MichaelPabody = new DeveloperInfo("Michael Pabody", 1, "adasd");
-            DeveloperInfo CaseyWilson = new DeveloperInfo("Casey Wilson", 2, "asdsd");
-            DeveloperInfo MitchellReed = new DeveloperInfo("Mitchell Reed", 3, "sdasd");
-            DeveloperInfo DrewGraber = new DeveloperInfo("Drew Graber", 4, "assd");
+            DeveloperInfo MichaelPabody = new DeveloperInfo("Michael Pabody", 1,true);
+            DeveloperInfo CaseyWilson = new DeveloperInfo("Casey Wilson", 2,false);
+            DeveloperInfo MitchellReed = new DeveloperInfo("Mitchell Reed", 3,true);
+            DeveloperInfo DrewGraber = new DeveloperInfo("Drew Graber", 4,false);
             List<DeveloperInfo> newList = new List<DeveloperInfo>();
             newList.Add(MichaelPabody);
             newList.Add(DrewGraber);
             DevTeam Team1 = new DevTeam("Team1", 1, new List<DeveloperInfo> { });
             DevTeam Team2 = new DevTeam("Team2", 2, new List<DeveloperInfo> { });
-            DevTeam Team3 = new DevTeam("Team3", 3, new List<DeveloperInfo> {  });
+            DevTeam Team3 = new DevTeam("Team3", 3, new List<DeveloperInfo> { });
             DevTeam Team4 = new DevTeam("Team4", 4, new List<DeveloperInfo> { });
             _Team.AddTeamToList(Team1);
             _Team.AddTeamToList(Team2);
@@ -280,10 +350,10 @@ namespace DevTeam_Console
 
         public void SeedDeveloperList()
         {
-            DeveloperInfo MichaelPabody = new DeveloperInfo("Michael Pabody", 1, "adasd");
-            DeveloperInfo CaseyWilson = new DeveloperInfo("Casey Wilson", 2, "asdsd");
-            DeveloperInfo MitchellReed = new DeveloperInfo("Mitchell Reed", 3, "sdasd");
-            DeveloperInfo DrewGraber = new DeveloperInfo("Drew Graber", 4, "assd");
+            DeveloperInfo MichaelPabody = new DeveloperInfo("Michael Pabody", 1, true);
+            DeveloperInfo CaseyWilson = new DeveloperInfo("Casey Wilson", 2, false);
+            DeveloperInfo MitchellReed = new DeveloperInfo("Mitchell Reed", 3, true);
+            DeveloperInfo DrewGraber = new DeveloperInfo("Drew Graber", 4, false);
             _DevList.AddContentToList(MichaelPabody);
             _DevList.AddContentToList(CaseyWilson);
             _DevList.AddContentToList(MitchellReed);

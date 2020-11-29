@@ -12,17 +12,17 @@ namespace DevTeamsProject
        
         public string Name { get; set; }
         public int Id { get; set; }
-        public string PluralSight { get; set; }
+        public bool PluralSightAccess { get; set; }
        
 
         public DeveloperInfo(){}
 
 
-        public DeveloperInfo(string name, int id, string Pluralsight)
+        public DeveloperInfo(string name, int id, bool Pluralsightaccess)
         {
             Name = name;
             Id = id;
-            PluralSight= Pluralsight;
+            PluralSightAccess= Pluralsightaccess;
            
 
 
