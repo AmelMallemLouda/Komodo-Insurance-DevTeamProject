@@ -159,8 +159,7 @@ namespace DevTeam_Console
             Console.WriteLine("The developer was successfuly added to the list\n");
             Console.ResetColor();
             Console.WriteLine("Press any key to continue\n");
-            Console.ReadLine();
- 
+            Console.ReadKey();
 
         }
 
@@ -205,7 +204,7 @@ namespace DevTeam_Console
             Console.WriteLine("The developer was successfuly removed from the list\n");
             Console.ResetColor();
             Console.WriteLine("Press any key to continue\n");
-            Console.ReadLine();
+            Console.ReadKey();
 
         }
 
@@ -260,7 +259,7 @@ namespace DevTeam_Console
             }
             Console.ResetColor();
             Console.WriteLine("Press any key to continue\n");
-            Console.ReadLine();
+            Console.ReadKey();
 
         }
 
@@ -279,18 +278,18 @@ namespace DevTeam_Console
                     $"Id:{dev.Id}\n" +
                     $"Plural sight Access {dev.PluralSightAccess}");
                 Console.WriteLine("Press any key to continue\n");
-                Console.ReadLine();
+                Console.ReadKey();
 
                 if (dev.PluralSightAccess == true)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{dev.Name} Has PluralSight Access");
+                    Console.WriteLine($"{dev.Name} Has PluralSight Access\n");
                     Console.ResetColor();
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"{dev.Name} Has Not PluralSight Access");
+                    Console.WriteLine($"{dev.Name} Has Not PluralSight Access\n");
                     Console.ResetColor();
 
                 }
@@ -299,6 +298,8 @@ namespace DevTeam_Console
             {
                 Console.WriteLine("No Content with This ID,Please Enter a Valid ID");
             }
+            Console.WriteLine("Press any key to continue\n");
+            Console.ReadKey();
 
 
         }
@@ -323,7 +324,7 @@ namespace DevTeam_Console
                 Console.WriteLine("No content with this ID");
             }
             Console.WriteLine("Press any key to continue\n");
-            Console.ReadLine();
+            Console.ReadKey();
 
             // Find the developers
 
