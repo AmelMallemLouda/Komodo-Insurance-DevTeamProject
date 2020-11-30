@@ -18,21 +18,7 @@ namespace DevTeamsProject
         {
             _developerDirectory.Add(content);
         }
-        //Devloperlist
-        public void GetDeveloperList()
-        {
-            foreach(DeveloperInfo dev in _developerDirectory)
-            {
-                Console.WriteLine(dev.Id);
-            }
-        }
 
-        public void AddMultipledevelopersAtOnce()
-        {
-
-        }
-
-       
         //Developer Read
 
         public List<DeveloperInfo> GetListOfDeveloper()
@@ -41,20 +27,20 @@ namespace DevTeamsProject
         }
         //Developer Update
 
-        public bool UpdateDeveloperList( int id,DeveloperInfo newList)
+        public bool UpdateDeveloperList(int id, DeveloperInfo newList)
 
 
         {    //Find the list
 
             DeveloperInfo oldList = GetDeveloperById(id);
-            
+
             //Update the list
-            if( oldList != null)
+            if (oldList != null)
             {
                 oldList.Name = newList.Name;
                 oldList.Id = newList.Id;
                 oldList.PluralSightAccess = newList.PluralSightAccess;
-                
+
                 return true;
             }
             else
@@ -63,11 +49,11 @@ namespace DevTeamsProject
             }
 
         }
-        //Pluralsight access
-       
-            //Developer Delete
 
-            public bool RemoveDevloperFromList(int id)
+
+        //Developer Delete
+
+        public bool RemoveDevloperFromList(int id)
         {
             //Find the list
             DeveloperInfo list = GetDeveloperById(id);
@@ -88,28 +74,24 @@ namespace DevTeamsProject
                 return false;
             }
         }
-            
-
-
-
 
 
         //Developer Helper (Get Developer by ID)
 
         public DeveloperInfo GetDeveloperById(int id)
         {
-            foreach(DeveloperInfo list in _developerDirectory)
+            foreach (DeveloperInfo list in _developerDirectory)
             {
                 if (list.Id == id)
                 {
                     return list;
                 }
-                
+
             }
             return null;
 
         }
-       
+
 
 
     }

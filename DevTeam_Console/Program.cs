@@ -12,8 +12,8 @@ namespace DevTeam_Console
         {
             ProgramUI program = new ProgramUI();
             program.Run();
-            program.SeedTeamList();
-            program.SeedDeveloperList();
+            
+            
         }
     }
 }
