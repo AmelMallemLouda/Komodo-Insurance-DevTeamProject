@@ -119,7 +119,7 @@ namespace DevTeam_Console
             DeveloperInfo developer = new DeveloperInfo();
            
             // Find Team
-            Console.WriteLine("Enter the ID of the Team.(1,2,3,4)");
+            Console.WriteLine("Enter the ID of the Team.(1,2,3,4)\n");
             int intAsstring = int.Parse(Console.ReadLine());
             DevTeam content = _Team.GetTeamById(intAsstring);
             
@@ -127,14 +127,14 @@ namespace DevTeam_Console
             if (content.TeamId == intAsstring)
             {
                 Console.WriteLine($"Name:{content.Name}\n" +
-                    $"Id:{content.TeamId}");
+                    $"Id:{content.TeamId}\n");
             }
             else
             {
                 Console.WriteLine("Please enter a valid ID.");
             }
-            Console.WriteLine("Press any key to continue\n");
-            Console.ReadKey();
+           
+          
             
             // Find the developer
             Console.WriteLine("Enter the ID of developer that you want to add to that team.(1,2,3,4)\n");
@@ -151,15 +151,15 @@ namespace DevTeam_Console
             {
                 Console.WriteLine("Please enter a valid ID.");
             }
-            Console.WriteLine("Press any key to continue\n");
-            Console.ReadKey();
+            
+            
             // Add developer to Team
             content.Developer.Add(dev);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("The developer was successfuly added to the list\n");
             Console.ResetColor();
             Console.WriteLine("Press any key to continue\n");
-            Console.ReadKey();
+           
 
         }
 
@@ -167,22 +167,21 @@ namespace DevTeam_Console
         {
             DeveloperInfo developer = new DeveloperInfo();
 
-            Console.WriteLine("Enter the ID of the Team.(1,2,3,4)");
+            Console.WriteLine("Enter the ID of the Team.(1,2,3,4)\n");
             int intAsstring = int.Parse(Console.ReadLine());
             DevTeam content = _Team.GetTeamById(intAsstring);
 
             if (content.TeamId == intAsstring)
             {
                 Console.WriteLine($"Name:{content.Name}\n" +
-                    $"Id:{content.TeamId}");
+                    $"Id:{content.TeamId}\n");
             }
             else
             {
                 Console.WriteLine("Please enter a valid ID");
                
             }
-            Console.WriteLine("Press any key to continue\n");
-            Console.ReadKey();
+            
            
             // Find the developer
             Console.WriteLine("Enter the  ID of developer that you want to remove from that team.(1,2,3,4)\n");
@@ -204,8 +203,7 @@ namespace DevTeam_Console
             Console.WriteLine("The developer was successfuly removed from the list\n");
             Console.ResetColor();
             Console.WriteLine("Press any key to continue\n");
-            Console.ReadKey();
-
+           // Console.ReadKey();
         }
 
 
@@ -259,7 +257,7 @@ namespace DevTeam_Console
             }
             Console.ResetColor();
             Console.WriteLine("Press any key to continue\n");
-            Console.ReadKey();
+            
 
         }
 
@@ -277,8 +275,7 @@ namespace DevTeam_Console
                 Console.WriteLine($"Name:{dev.Name}\n" +
                     $"Id:{dev.Id}\n" +
                     $"Plural sight Access {dev.PluralSightAccess}");
-                Console.WriteLine("Press any key to continue\n");
-                Console.ReadKey();
+           
 
                 if (dev.PluralSightAccess == true)
                 {
@@ -299,7 +296,7 @@ namespace DevTeam_Console
                 Console.WriteLine("No Content with This ID,Please Enter a Valid ID");
             }
             Console.WriteLine("Press any key to continue\n");
-            Console.ReadKey();
+            
 
 
         }
@@ -323,12 +320,11 @@ namespace DevTeam_Console
             {
                 Console.WriteLine("No content with this ID");
             }
-            Console.WriteLine("Press any key to continue\n");
-            Console.ReadKey();
-
+           
+          
             // Find the developers
 
-            Console.WriteLine("Enter the IDs of  the 4 developers to add to them to team(1,2,3,4.Hit after each ID#)");
+            Console.WriteLine("Enter the IDs of  the 4 developers to add  them to the team(1,2,3,4. Press Enter after each ID#)");
             int[] answer = new int[5];
             
             for (int i =1; i < answer.Length; i++)
@@ -363,6 +359,8 @@ namespace DevTeam_Console
             content.Developer.Add(dev1);
             content.Developer.Add(dev2);
             content.Developer.Add(dev3);
+
+             Console.WriteLine("Press any key to continue\n");
 
         }
 
